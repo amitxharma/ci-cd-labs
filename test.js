@@ -1,6 +1,6 @@
 console.log("Running tests...");
 
-if (2 + 2 !== 4) {
+if (2 + 2 !== 5) {
   throw new Error("Math test failed");
 }
 
