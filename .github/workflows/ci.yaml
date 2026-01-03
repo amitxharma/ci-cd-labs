@@ -1,27 +1,25 @@
-name: CI Deep Basics
+name: Node.js CI
 
 on:
   push:
     branches:
       - main
-  pull_request:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Show current directory
-        run: pwd
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-      - name: List files
-        run: ls -la
+      - name: Install dependencies
+        run: npm install
 
-      - name: Print environment info
-        run: |
-          echo "Runner OS: $RUNNER_OS"
-          echo "GitHub Repo: $GITHUB_REPOSITORY"
-          echo "Actor: $GITHUB_ACTOR"
+      - name: Run tests
+        run: npm test
