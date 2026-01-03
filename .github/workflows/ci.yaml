@@ -1,17 +1,27 @@
-name: First CI Pipeline
+name: CI Deep Basics
 
 on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Run a script
-        run: echo "CI Pipeline is running successfully!"
+      - name: Show current directory
+        run: pwd
+
+      - name: List files
+        run: ls -la
+
+      - name: Print environment info
+        run: |
+          echo "Runner OS: $RUNNER_OS"
+          echo "GitHub Repo: $GITHUB_REPOSITORY"
+          echo "Actor: $GITHUB_ACTOR"
